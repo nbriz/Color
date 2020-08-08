@@ -1,0 +1,19 @@
+{
+  "name": "Color",
+  "version": "1.0.0",
+  "description": "A vanilla JS class with common Color maths.",
+  "main": "Color.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nbriz/Color.git"
+  },
+  "author": "Nick Briz <nbriz@brangerbriz.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nbriz/Color/issues"
+  },
+  "homepage": "https://github.com/nbriz/Color#readme"
+}
