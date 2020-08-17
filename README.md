@@ -14,7 +14,7 @@ on the web
 
 or in node
 ```js
-const Averigua = require('averigua')
+const Color = require('Color')
 ```
 
 ### Methods
