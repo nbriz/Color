@@ -1,6 +1,24 @@
 # Color
 A vanilla JS class with common Color maths. The methods that handle `hsv` and `hsl` values take/return `h` values between 0-360 and `s`, `v`, `l` values between 0-100. To work with floats, 0-1, add an underscore before the method name, for example `Color._hsv2hex(h, s, v)` takes float values as arguments, or `Color._rgb2hsl(r, g, b)` returns float values, or `Color._hsl2hsv(h, s, l)` both takes and returns values in floats.
 
+## install
+
+```
+$ npm install git+https://github.com/nbriz/Color.git
+```
+
+on the web
+```HTML
+<script src="node_modules/Color/Color.js"></script>
+```
+
+or in node
+```js
+const Averigua = require('averigua')
+```
+
+### Methods
+
 ```js
 Color.alpha2hex(a)
 Color.hex2alpha(hex)
