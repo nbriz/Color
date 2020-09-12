@@ -68,8 +68,8 @@ class Color {
   }
 
   static hex2rgb (hex) {
-    if (hex.length === 9) hex = hex.substring(7, 9)
-    else if (hex.length === 5) hex = hex.substring(4, 5)
+    if (hex.length === 9) hex = hex.substring(0, 7)
+    else if (hex.length === 5) hex = hex.substring(0, 4)
 
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
     hex = hex.replace(shorthandRegex, function (m, r, g, b) {
@@ -85,8 +85,8 @@ class Color {
   }
 
   static hex2hsl (hex) {
-    if (hex.length === 9) hex = hex.substring(7, 9)
-    else if (hex.length === 5) hex = hex.substring(4, 5)
+    if (hex.length === 9) hex = hex.substring(0, 7)
+    else if (hex.length === 5) hex = hex.substring(0, 4)
     const c = this.hex2rgb(hex)
     return this.rgb2hsl(c.r, c.g, c.b)
   }
