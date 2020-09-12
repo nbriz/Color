@@ -48,6 +48,13 @@
     Color._hsl2rgb(h, s, l)
     Color.hsl2hsv(h, s, l)
     Color._hsl2hsv(h, s, l)
+
+    // match method takes a string and returns the first color string it finds
+    // in the form of a parsed array (if no color is found it returns null)
+    // for example:
+
+    Color.match('color: rgba(34, 56, 88, 0.5); font-size: 23px;')
+    // returns ["rgb", "rgba(34, 56, 88, 0.5)", "34", "56", "88", "0.5"]
 */
 class Color {
   static alpha2hex (a) {
@@ -240,6 +247,21 @@ class Color {
       g: Math.round(g * 255),
       b: Math.round(b * 255)
     }
+  }
+
+  // ~ ~ ~
+
+  static match (str) {
+    const hexRegex = /#[a-f\d]{3}(?:[a-f\d]?|(?:[a-f\d]{3}(?:[a-f\d]{2})?)?)\b/
+    const hex = str.match(hexRegex)
+    const rgbRegex = /rgba?\((?:(25[0-5]|2[0-4]\d|1?\d{1,2}|(?:\d{1,2}|100)%),\s*(25[0-5]|2[0-4]\d|1?\d{1,2}|(?:\d{1,2}|100)%),\s*(25[0-5]|2[0-4]\d|1?\d{1,2}|(?:\d{1,2}|100)%)(?:,\s*((?:\d{1,2}|100)%|0(?:\.\d+)?|1))?|(25[0-5]|2[0-4]\d|1?\d{1,2}|(?:\d{1,2}|100)%)\s+(25[0-5]|2[0-4]\d|1?\d{1,2}|(?:\d{1,2}|100)%)\s+(25[0-5]|2[0-4]\d|1?\d{1,2}|(?:\d{1,2}|100)%)(?:\s+((?:\d{1,2}|100)%|0(?:\.\d+)?|1))?)\)/
+    const rgb = str.match(rgbRegex)
+    const hslRegex = /hsla?\((?:(-?\d+(?:deg|g?rad|turn)?),\s*((?:\d{1,2}|100)%),\s*((?:\d{1,2}|100)%)(?:,\s*((?:\d{1,2}|100)%|0(?:\.\d+)?|1))?|(-?\d+(?:deg|g?rad|turn)?)\s+((?:\d{1,2}|100)%)\s+((?:\d{1,2}|100)%)(?:\s+((?:\d{1,2}|100)%|0(?:\.\d+)?|1))?)\)/
+    const hsl = str.match(hslRegex)
+    if (hex) return ['hex', ...hex]
+    else if (rgb) return ['rgb', ...rgb]
+    else if (hsl) return ['hsl', ...hsl]
+    else return null
   }
 }
 

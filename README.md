@@ -21,3 +21,9 @@ Color.hsl2hex(h, s, l)
 Color.hsl2rgb(h, s, l)
 Color.hsl2hsv(h, s, l)
 ```
+
+It also has a `.match()` method takes a string and returns the first color string it finds in the form of a parsed array (if no color is found it returns null), for example:
+```js
+Color.match('color: rgba(34, 56, 88, 0.5); font-size: 23px;')
+// returns ["rgb", "rgba(34, 56, 88, 0.5)", "34", "56", "88", "0.5"]
+```
