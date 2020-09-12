@@ -59,7 +59,8 @@
 class Color {
   static alpha2hex (a) {
     const n = a * 255
-    return n.toString(16)
+    const v = n.toString(16)
+    return v.split('.')[0]
   }
 
   static hex2alpha (hex) {
