@@ -4,7 +4,7 @@ A vanilla JS class with common Color maths.
 ## install
 
 ```
-$ npm install git+https://github.com/nbriz/Color.git
+npm install git+https://github.com/nbriz/Color.git
 ```
 
 on the web
