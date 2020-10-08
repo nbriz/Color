@@ -4,13 +4,13 @@
   "description": "A vanilla JS class with common Color maths.",
   "main": "Color.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nbriz/Color.git"
   },
-  "author": "Nick Briz <nbriz@brangerbriz.com>",
+  "author": "Nick Briz <nickbriz@protonmail.com>",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/nbriz/Color/issues"
