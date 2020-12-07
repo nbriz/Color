@@ -9,6 +9,14 @@ const test = (func, args, expect) => {
   if (a === b) { pass(func) } else { fail(func, a) }
 }
 
+console.log('--- alpha ---')
+test('alpha2hex', [0], '00')
+test('alpha2hex', [0.5], '7f')
+test('alpha2hex', [1], 'ff')
+test('hex2alpha', ['00'], 0)
+test('hex2alpha', ['7f'], 0.5)
+test('hex2alpha', ['ff'], 1)
+
 console.log('--- HEX ---')
 test('_hex2rgb', ['#ff0000'], { r: 1, g: 0, b: 0 })
 test('hex2rgb', ['#ff0000'], { r: 255, g: 0, b: 0 })

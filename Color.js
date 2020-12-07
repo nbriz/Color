@@ -62,11 +62,13 @@ class Color {
   static alpha2hex (a) {
     const n = a * 255
     const v = n.toString(16)
-    return v.split('.')[0]
+    const h = v.split('.')[0]
+    return (h.length === 1) ? `0${h}` : h
   }
 
   static hex2alpha (hex) {
-    return parseInt(hex, 16) / 255
+    const v = parseInt(hex, 16) / 255
+    return Math.round(v * 100) / 100
   }
 
   // ................................................................. HEX .....
