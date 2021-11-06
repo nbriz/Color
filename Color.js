@@ -50,7 +50,7 @@
     Color.hsv2rgb(h, s, v)
     Color._hsv2hsl(h, s, v)
     Color.hsv2hsl(h, s, v)
-    
+
     // creates a random color string
     Color.random()
 
