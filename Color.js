@@ -50,6 +50,18 @@
     Color.hsv2rgb(h, s, v)
     Color._hsv2hsl(h, s, v)
     Color.hsv2hsl(h, s, v)
+    
+    // creates a random color string
+    Color.random()
+
+    // also accepts two optional arguments, type and alpha
+    // type can be: 'hex', 'rgb', 'rgba', 'hsl' or 'hsla'
+    // alpha can be a float value (0.0 - 1.0) or a boolean
+    Color.random(type, alpha)
+
+    // determines whether a hex or rgb color string is light or dark
+    // returns true for light colors and false for dark colors
+    Color.isLight(colorString)
 
     // match method takes a string and returns the first color string it finds
     // in the form of a parsed array (if no color is found it returns null)
@@ -311,6 +323,67 @@ class Color {
   }
 
   // ~ ~ ~
+    
+  static random (type, alpha) {
+    let r, g, b, h, s, l, a, hex
+    const opac = type === 'rgba' || type === 'hsla'
+    if (typeof alpha === 'number') {
+      a = type === 'hex' ? this.alpha2hex(alpha) : alpha
+    } else if (alpha === true || opac) {
+      a = type === 'hex'
+        ? Math.floor(Math.random() * 255).toString(16)
+        : Math.round(Math.random() * 100) / 100
+    }
+
+    if (type === 'rgb' || type === 'rgba') {
+      r = Math.floor(Math.random() * 255)
+      g = Math.floor(Math.random() * 255)
+      b = Math.floor(Math.random() * 255)
+      if (a) {
+        return `rgba(${r}, ${g}, ${b}, ${a})`
+      } else {
+        return `rgb(${r}, ${g}, ${b})`
+      }
+    } else if (type === 'hsl' || type === 'hsla') {
+      h = Math.floor(Math.random() * 360)
+      s = Math.floor(Math.random() * 100)
+      l = Math.floor(Math.random() * 100)
+      if (a) {
+        return `hsla(${h}, ${s}%, ${l}%, ${a})`
+      } else {
+        return `hsl(${h}, ${s}%, ${l}%)`
+      }
+    } else {
+      hex = '#' + Math.floor(Math.random() * 16777215).toString(16)
+      return a ? hex + a : hex
+    }
+  }
+
+  // via: https://awik.io/determine-color-bright-dark-using-javascript/
+  static isLight (color) {
+    // Variables for red, green, blue values
+    let r, g, b
+    // Check the format of the color, HEX or RGB?
+    if (color.match(/^rgb/)) {
+      // If RGB --> store the red, green, blue values in separate variables
+      color = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/)
+      r = color[1]
+      g = color[2]
+      b = color[3]
+    } else {
+      // If hex --> Convert it to RGB: http://gist.github.com/983661
+      color = +('0x' + color.slice(1).replace(color.length < 5 && /./g, '$&$&'))
+      r = color >> 16
+      g = color >> 8 & 255
+      b = color & 255
+    }
+
+    // HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
+    const hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b))
+
+    // Using the HSP value, determine whether the color is light or dark
+    return hsp > 127.5
+  }
 
   static match (str) {
     const hexRegex = /#[a-f\d]{3}(?:[a-f\d]?|(?:[a-f\d]{3}(?:[a-f\d]{2})?)?)\b/
