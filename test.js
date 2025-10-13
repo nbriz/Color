@@ -48,3 +48,11 @@ test('_hsv2rgb', [0, 1, 1], { r: 1, g: 0, b: 0 })
 test('hsv2rgb', [0, 100, 100], { r: 255, g: 0, b: 0 })
 test('_hsv2hsl', [0, 1, 1], { h: 0, s: 1, l: 0.5 })
 test('hsv2hsl', [0, 100, 100], { h: 0, s: 100, l: 50 })
+
+console.log('--- SCHEMES ---')
+// complementary from hue
+test('scheme', [{ harmony: 'complementary', base: 0 }], ['#ff0000', '#00ffff'])
+// triad from hue
+test('scheme', [{ harmony: 'triad', base: 0 }], ['#ff0000', '#00ff00', '#0000ff'])
+// analogous around red with default angle=30, count=5
+test('scheme', [{ harmony: 'analogous', base: 0, count: 5 }], ['#ff00ff', '#ff0080', '#ff0000', '#ff8000', '#ffff00'])
